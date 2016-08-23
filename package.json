@@ -1,0 +1,33 @@
+{
+  "name": "copy-markdown-as-html",
+  "displayName": "copy-markdown-as-html",
+  "description": "Copies the selected markdown text to the clipboard as HTML",
+  "version": "0.0.1",
+  "publisher": "jerriep",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.copyAsHtml"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.copyAsHtml",
+        "title": "Markdown: Copy as HTML"
+      }
+    ]
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "copy-paste": "^1.3.0",
+    "marked": "^0.3.6",
+    "vscode": "^0.11.0"
+  }
+}
