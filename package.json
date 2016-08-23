@@ -3,7 +3,7 @@
   "displayName": "copy-markdown-as-html",
   "description": "Copies the selected markdown text to the clipboard as HTML",
   "version": "0.0.1",
-  "publisher": "jerriep",
+  "publisher": "jerriepelser",
   "engines": {
     "vscode": "^1.0.0"
   },
