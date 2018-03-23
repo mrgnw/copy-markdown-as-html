@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 var vscode = require('vscode');
-var marked = require('marked');
+var MarkdownIt = require('markdown-it');
 var copyPaste = require('copy-paste');
 
 // this method is called when your extension is activated
@@ -31,7 +31,10 @@ function activate(context) {
         else
             text = editor.document.getText(selection);
 
-        copyPaste.copy(marked(text));
+        md = new MarkdownIt();
+        var result = md.render(text);
+
+        copyPaste.copy(result);
     });
 
     context.subscriptions.push(disposable);
