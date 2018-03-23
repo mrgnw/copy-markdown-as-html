@@ -1,7 +1,8 @@
 {
     "name": "copy-markdown-as-html",
     "displayName": "Copy Markdown as HTML",
-    "description": "Copies the selected markdown text to the clipboard as HTML",
+    "description": "Copies the selected text from a markdown document to the clipboard as HTML.",
+    "icon": "icon.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/jerriep/copy-markdown-as-html"
