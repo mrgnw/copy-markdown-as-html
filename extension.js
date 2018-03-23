@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 var vscode = require('vscode');
 var MarkdownIt = require('markdown-it');
-var copyPaste = require('copy-paste');
+const clipboardy = require('clipboardy');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -34,7 +34,7 @@ function activate(context) {
         md = new MarkdownIt();
         var result = md.render(text);
 
-        copyPaste.copy(result);
+        clipboardy.writeSync(result);
     });
 
     context.subscriptions.push(disposable);
