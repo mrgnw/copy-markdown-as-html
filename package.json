@@ -15,13 +15,74 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.copyAsHtml"
+        "onCommand:extension.copyMarkdownAsHtml"
     ],
     "main": "./extension",
     "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "Copy Markdown as HTML configuration",
+            "properties": {
+                "copyMarkdownAsHtml.html": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable HTML tags in source",
+                    "enum": [
+                        true,
+                        false
+                    ]
+                },
+                "copyMarkdownAsHtml.xhtmlOut": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Use '/' to close single tags (<br />). This is only for full CommonMark compatibility.",
+                    "enum": [
+                        true,
+                        false
+                    ]
+                },
+                "copyMarkdownAsHtml.breaks": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Convert '\\n' in paragraphs into <br>This is only for full CommonMark compatibility.",
+                    "enum": [
+                        true,
+                        false
+                    ]
+                },
+                "copyMarkdownAsHtml.langPrefix": {
+                    "type": "string",
+                    "default": "language-",
+                    "description": "CSS language prefix for fenced blocks. Can be useful for external highlighters."
+                },
+                "copyMarkdownAsHtml.linkify": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Autoconvert URL-like text to links.",
+                    "enum": [
+                        true,
+                        false
+                    ]
+                },
+                "copyMarkdownAsHtml.typographer": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable some language-neutral replacement + quotes beautification.",
+                    "enum": [
+                        true,
+                        false
+                    ]
+                },
+                "copyMarkdownAsHtml.quotes": {
+                    "type": "string",
+                    "default": "“”‘’",
+                    "description": "Double + single quotes replacement pairs, when typographer enabled, and smartquotes on."
+                }
+            }
+        },
         "commands": [
             {
-                "command": "extension.copyAsHtml",
+                "command": "extension.copyMarkdownAsHtml",
                 "title": "Markdown: Copy as HTML"
             }
         ]

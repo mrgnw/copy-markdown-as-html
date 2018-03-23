@@ -15,11 +15,10 @@ function activate(context) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
-    var disposable = vscode.commands.registerCommand('extension.copyAsHtml', function () {
+    var disposable = vscode.commands.registerCommand('extension.copyMarkdownAsHtml', function () {
         // The code you place here will be executed every time your command is executed
 
-        // Display a message box to the user
-        //vscode.window.showInformationMessage('Hello World!');
+        this.configurations = vscode.workspace.getConfiguration("copyMarkdownAsHtml");
 
         var editor = vscode.window.activeTextEditor;
         var selection = editor.selection;
@@ -31,7 +30,18 @@ function activate(context) {
         else
             text = editor.document.getText(selection);
 
-        md = new MarkdownIt();
+        var settings = {};
+        if (this.configurations.has('html')) { settings.html = this.configurations.get('html'); }
+        if (this.configurations.has('xhtmlOut')) { settings.xhtmlOut = this.configurations.get('xhtmlOut'); }
+        if (this.configurations.has('breaks')) { settings.breaks = this.configurations.get('breaks'); }
+        if (this.configurations.has('langPrefix')) { settings.langPrefix = this.configurations.get('langPrefix'); }
+        if (this.configurations.has('linkify')) { settings.linkify = this.configurations.get('linkify'); }
+        if (this.configurations.has('typographer')) { settings.typographer = this.configurations.get('typographer'); }
+        if (this.configurations.has('quotes')) { settings.quotes = this.configurations.get('quotes'); }
+
+        if (settings.quotes === '') { settings.quotes = '“”‘’'; }
+
+        var md = new MarkdownIt(settings);
         var result = md.render(text);
 
         clipboardy.writeSync(result);
